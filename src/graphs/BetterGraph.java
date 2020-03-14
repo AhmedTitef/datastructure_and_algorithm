@@ -14,9 +14,9 @@ public class BetterGraph {
             next = node;
         }
     }
-    class Vertex {
+    class Vertex {//|vertex: "name" -> adjList|
         String name;
-        Node adjList;
+        Node adjList; //adjacentNode to the main vertex
         Vertex (String name , Node aNode){
             this.name = name;
             this.adjList = aNode;
@@ -38,6 +38,35 @@ public class BetterGraph {
     }
     public void addEdge (String srcVertexName, String destVertexName){
 
+        int V1Idx = indexForName( srcVertexName );
+        int V2Idx = indexForName( destVertexName );
+        arrayOfLists[V1Idx].adjList  = new Node( V2Idx, arrayOfLists[V1Idx].adjList );
+        // ^^ we are assigning a new Node to that exisiting list that is coming from that vertex
+        if (undirected){
+            arrayOfLists[V2Idx].adjList = new Node( V1Idx , arrayOfLists[V2Idx].adjList );
+        }
+    }
+
+    int indexForName(String name){
+        for (int v = 0 ; v < arrayOfLists.length ; v++){
+            if(arrayOfLists[v].name.equals( name )){
+                return v;
+            }
+        }
+        return -1;
+    }
+
+    public void print(){
+        System.out.println();
+        for (int v = 0; v< arrayOfLists.length ; v++ ){
+            System.out.println(arrayOfLists[v].name);
+            for (Node aNode = arrayOfLists[v].adjList ; aNode!= null ; aNode = aNode.next){
+                System.out.println(" --> " + arrayOfLists[aNode.vertexIdx].name);
+
+            }
+
+            System.out.println("\n");
+        }
     }
 
 }
