@@ -42,6 +42,8 @@ public class BetterGraph {
         int V2Idx = indexForName( destVertexName );
         arrayOfLists[V1Idx].adjList  = new Node( V2Idx, arrayOfLists[V1Idx].adjList );
         // ^^ we are assigning a new Node to that exisiting list that is coming from that vertex
+        //and next list after that V2idx is all the componenets of that vertex 2
+        // |v1 we made an edge to v2 => then => include all the v2 components|
         if (undirected){
             arrayOfLists[V2Idx].adjList = new Node( V1Idx , arrayOfLists[V2Idx].adjList );
         }
