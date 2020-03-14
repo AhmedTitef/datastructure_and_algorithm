@@ -62,7 +62,8 @@ public class DoublyLinkedList {
         Node current = first;
         while (current.data != key) {
             current = current.next;
-            if (current == null) {
+            if (current == null) { //that means we went thru the whole list and
+                // we couldnt find that key until current reached to end(null)
                 return false;
             }
 
